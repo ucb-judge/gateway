@@ -1,0 +1,6 @@
+#spring:
+#  cloud:
+#    config:
+#      uri: http://172.22.64.138:8888/ucb-judge/gateway
+#      username: root
+#      password: qchxYEACmQi!dfypK$5e
