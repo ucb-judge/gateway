@@ -50,4 +50,4 @@ eureka:
   client:
     register-with-eureka: true
     service-url:
-      defaultZone: http://localhost:8711/eureka/
+      defaultZone: http://service-discovery:8711/eureka/
