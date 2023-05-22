@@ -8,19 +8,22 @@ spring:
     base-url: ${ZIPKIN_SERVER_URI:http://localhost:9411}
   cloud:
     gateway:
+      default-filters:
+        - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
       globalcors:
-        cors-configurations:
-          "[/**]":
-            - allowedOrigins:
-                - "http://localhost:4200"
-                - "http://angular:4200"
-                - "172.22.64.138:8888" # Synology NAS IP
-            - allowedMethods:
-                - "GET"
-                - "POST"
-                - "PUT"
-                - "DELETE"
-                - "OPTIONS"
+        corsConfigurations:
+          '[/**]':
+            allowedHeaders: "*"
+            allowedOrigins:
+              - "http://localhost:4200"
+              - "http://angular:4200"
+              - "http://172.22.64.138:8888"
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+              - OPTIONS
       routes:
         - id: uj-users
           uri: lb://uj-users
@@ -28,7 +31,18 @@ spring:
             - Path=/uj-users/**
           filters:
             - RewritePath=/uj-users/(?<path>.*), /$\{path}
-
+        - id: uj-problems
+          uri: lb://uj-problems
+          predicates:
+            - Path=/uj-problems/**
+          filters:
+            - RewritePath=/uj-problems/(?<path>.*), /$\{path}
+        - id: uj-file-uploader
+          uri: lb://uj-file-uploader
+          predicates:
+            - Path=/uj-file-uploader/**
+          filters:
+            - RewritePath=/uj-file-uploader/(?<path>.*), /$\{path}
 management:
   endpoints:
     web:
@@ -39,4 +53,4 @@ eureka:
   client:
     register-with-eureka: true
     service-url:
-      defaultZone: ${EUREKA_SERVER_URI:http://localhost:8761/eureka/}
+      defaultZone: ${EUREKA_SERVER_URI:http://localhost:8711/eureka/}

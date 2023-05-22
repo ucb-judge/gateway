@@ -1,13 +1,14 @@
-FROM eclipse-temurin:11-jdk-alpine
-#FROM arm64v8/eclipse-temurin:11-jdk
+#FROM eclipse-temurin:11-jdk-alpine
+FROM arm64v8/eclipse-temurin:11-jdk
 
 EXPOSE 8282
+
+RUN mkdir -p /opt/ucb-judge/logs/uj-gateway
+VOLUME /opt/ucb-judge/logs/uj-gateway
 
 VOLUME /tmp
 
 ENV CONFIG_SERVER_URI="CONFIG_SERVER_URI"
-ENV CONFIG_SERVER_USER="CONFIG_SERVER_USER"
-ENV CONFIG_SERVER_PASSWORD="CONFIG_SERVER_PASSWORD"
 
 ENV EUREKA_SERVER_URI="EUREKA_SERVER_URI"
 ENV CONFIG_SERVER_PROFILE="CONFIG_SERVER_PROFILE"
