@@ -43,6 +43,12 @@ spring:
             - Path=/uj-problems/**
           filters:
             - RewritePath=/uj-problems/(?<path>.*), /$\{path}
+        - id: uj-submissions
+          uri: lb://uj-submissions
+          predicates:
+            - Path=/uj-submissions/**
+          filters:
+            - RewritePath=/uj-submissions/(?<path>.*), /$\{path}
         - id: uj-file-uploader
           uri: lb://uj-file-uploader
           predicates:
