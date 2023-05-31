@@ -13,7 +13,13 @@ spring:
       globalcors:
         corsConfigurations:
           '[/**]':
-            allowedHeaders: "*"
+            allowedHeaders:
+              - "Content-Type"
+              - "Origin"
+              - "Accept"
+              - "Authorization"
+              - "Content-Length"
+              - "X-Requested-With"
             allowedOrigins:
               - "http://localhost:4200"
               - "http://angular:4200"
