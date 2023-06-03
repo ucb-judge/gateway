@@ -1,5 +1,6 @@
-#FROM eclipse-temurin:11-jdk-alpine
-FROM arm64v8/eclipse-temurin:11-jdk
+FROM eclipse-temurin:11-jdk-alpine
+#FROM --platform=linux/x86_64 eclipse-temurin:11-jdk
+#FROM arm64v8/eclipse-temurin:11-jdk
 
 EXPOSE 8282
 
@@ -9,7 +10,6 @@ VOLUME /opt/ucb-judge/logs/uj-gateway
 VOLUME /tmp
 
 ENV PORT="PORT"
-
 ENV CONFIG_SERVER_URI="CONFIG_SERVER_URI"
 
 ENV EUREKA_SERVER_URI="EUREKA_SERVER_URI"
