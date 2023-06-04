@@ -23,8 +23,8 @@ spring:
             allowedOrigins:
               - "http://localhost:4200"
               - "http://angular:4200"
-              - "http://172.22.64.138:8888"
-              - "http://157.230.56.211:8090"
+              - "http://157.230.56.211:80"
+              - "http://157.230.56.211"
             allowedMethods:
               - GET
               - POST
